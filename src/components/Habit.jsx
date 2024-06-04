@@ -4,7 +4,7 @@ const Habit = ({ habit, days }) => {
     return (
         <div>
             <h1 className='text-center mb-2'>{habit}</h1>
-            <PixelContainer days={days} />
+            <PixelContainer name={habit} days={days} />
         </div>
 
     )
