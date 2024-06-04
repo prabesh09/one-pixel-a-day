@@ -1,11 +1,15 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import HabitController from './components/HabitController'
 
 const App = () => {
-  const [habit, setHabit] = useState([
-    { title: "workout", days: 150 },
-    { title: "exercise", days: 150 }
-  ])
+  const [habit, setHabit] = useState(() => {
+    const storedHabit = localStorage.getItem('habit')
+    return storedHabit ? JSON.parse(storedHabit) : [{ title: "code", days: 150 }]
+  })
+
+  useEffect(() => {
+    localStorage.setItem('habit', JSON.stringify(habit))
+  }, [habit])
 
   const addHabitHandler = () => {
     if (title && days) {
